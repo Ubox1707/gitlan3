@@ -1,0 +1,56 @@
+.navbar{
+  height: 50px;
+  background-color: #003580;
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer{
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: 500;
+}
+.navItems{
+  display: flex;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+  border-radius: 4px;
+}
+.navButton:hover{
+  background-color: aquamarine;
+}
+
+.username{
+  line-height: 40px;
+  color: aqua;
+}
+
+.btnLogin,
+.btnRegister,
+.btnLogOut{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+  border-radius: 4px;
+}
+.btnLogin:hover
+.btnRegister:hover,
+.btnLogOut:hover{
+  background-color: aquamarine;
+}
+
