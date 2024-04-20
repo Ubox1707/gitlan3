@@ -1,44 +1,122 @@
 export const userInputs = [
     {
       id: 1,
-      label: "Username",
+      label: "Tên đăng kí",
       type: "text",
-      placeholder: "john_doe",
+      placeholder: "thinh_1",
     },
     {
       id: 2,
-      label: "Name and surname",
+      label: "Họ và tên",
       type: "text",
-      placeholder: "John Doe",
+      placeholder: "Nguyễn Văn A",
     },
     {
       id: 3,
       label: "Email",
       type: "mail",
-      placeholder: "john_doe@gmail.com",
+      placeholder: "nguyenvana@gmail.com",
     },
     {
       id: 4,
-      label: "Phone",
+      label: "Số điện thoại",
       type: "text",
-      placeholder: "+1 234 567 89",
+      placeholder: "+84 234 567 89",
     },
     {
       id: 5,
-      label: "Password",
+      label: "Mật khẩu",
       type: "password",
     },
     {
       id: 6,
-      label: "Address",
+      label: "Địa chỉ",
       type: "text",
-      placeholder: "Elton St. 216 NewYork",
+      placeholder: "Quận 12, TP. HCM",
     },
     {
       id: 7,
-      label: "Country",
+      label: "Quốc Gia",
       type: "text",
-      placeholder: "USA",
+      placeholder: "Việt Nam",
+    },
+  ];
+
+  export const hotelInputs = [
+    {
+      id: "name",
+      label: "Tên",
+      type: "text",
+      placeholder: "Khách sạn Ngàn sao",
+    },
+    {
+      id: "type",
+      label: "Loại",
+      type: "text",
+      placeholder: "khách sạn",
+    },
+    {
+      id: "city",
+      label: "Thành phố",
+      type: "text",
+      placeholder: "Hồ Chí Minh",
+    },
+    {
+      id: "address",
+      label: "Địa chỉ",
+      type: "text",
+      placeholder: "quận 1",
+    },
+    {
+      id: "distance",
+      label: "Khoảng cách từ trung tâm thành phố",
+      type: "text",
+      placeholder: "500",
+    },
+    {
+      id: "title",
+      label: "Tiêu đề",
+      type: "text",
+      placeholder: "Khách sạn bậc nhất",
+    },
+    {
+      id: "desc",
+      label: "Mô tả",
+      type: "text",
+      placeholder: "mô tả",
+    },
+    {
+      id: "cheapestPrice",
+      label: "Giá",
+      type: "text",
+      placeholder: "1000000",
+    },
+  ];
+  
+  export const roomInputs = [
+    {
+      id: "title",
+      label: "Tiêu đề",
+      type: "text",
+      placeholder: "2 phòng ngủ",
+    },
+    {
+      id: "desc",
+      label: "Mô tả",
+      type: "text",
+      placeholder: "Giường đôi, 1 phòng tắm",
+    },
+    {
+      id: "price",
+      label: "Giá",
+      type: "number",
+      placeholder: "1000000",
+    },
+    {
+      id: "maxPeople",
+      label: "Sức chứa",
+      type: "number",
+      placeholder: "2",
     },
   ];
   

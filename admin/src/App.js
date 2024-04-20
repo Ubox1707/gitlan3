@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
+import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
 import { DarkModeContext } from "./context/darkModeContext";
 import {AuthContext} from "./context/AuthContext";
 
@@ -36,7 +37,7 @@ function App() {
             <Route path="users">
               <Route index element={
               <ProtectedRoute>
-                <List />
+                <List columns={userColumns}/>
               </ProtectedRoute>} />
               <Route path=":userId" element={
               <ProtectedRoute>
@@ -51,8 +52,13 @@ function App() {
               }
               />
             </Route>
-            <Route path="products">
-              <Route index element={<List />} />
+            <Route path="hotels">
+              <Route index element={
+                <ProtectedRoute>
+                  <List columns={hotelColumns}/>
+                </ProtectedRoute>
+              
+              } />
               <Route path=":productId" element={
               <ProtectedRoute>
                 <Single />
@@ -65,6 +71,14 @@ function App() {
                   </ProtectedRoute>
               }
               />
+              <Route path="rooms">
+                <Route index element={
+                  <ProtectedRoute>
+                    <List columns={roomColumns}/>
+                  </ProtectedRoute>
+                }
+                />
+              </Route>
             </Route>
           </Route>
         </Routes>

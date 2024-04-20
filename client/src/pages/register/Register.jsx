@@ -24,7 +24,8 @@ const Register = ()=> {
         try {
             const res = await axios.post("/auth/register", credentials);
             dispatch({ type: "REGISTER_SUCCESS", payload: res.data});
-            navigate("/login")
+            navigate("/login");
+            console.log();
         } catch (err) {
             dispatch({type: "REGISTER_FAILURE", payload:err.response.data})
             
