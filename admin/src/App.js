@@ -71,14 +71,6 @@ function App() {
                   </ProtectedRoute>
               }
               />
-              <Route path="rooms">
-                <Route index element={
-                  <ProtectedRoute>
-                    <List columns={roomColumns}/>
-                  </ProtectedRoute>
-                }
-                />
-              </Route>
             </Route>
           </Route>
         </Routes>

@@ -22,7 +22,9 @@ const New = ({ inputs, title }) => {
     try{
       const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dehf2hp4a/image/upload",
        data);
+       console.log(uploadRes.data);
        const { url } = uploadRes.data;
+       console.log(data);
 
        const newUser = {
         ...info,
