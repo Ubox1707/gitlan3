@@ -1,14 +1,20 @@
 import User from "../models/User.js"
-
+import bcrypt from "bcryptjs"
 
 
 //CREATE
 export const createUser = async (req, res, next) => {
-    const newUser = new User(req.body);
+    // const newUser = new User(req.body);
     
     try{
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt);
+        const newUser = new User({
+            ...req.body,
+            password: hash,
+        });
         const saveUser= await newUser.save();
-        res.status(200).json(saveUser);
+        res.status(201).json(saveUser);
     }catch(err){
         next(err);
     }

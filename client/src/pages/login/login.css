@@ -44,6 +44,10 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(20px);
 }
+.error-message {
+    color: red;
+    display: none; /* Ẩn thông báo lỗi ban đầu */
+  }
 .lInput:hover{
     border: 3px solid #fff;
 }

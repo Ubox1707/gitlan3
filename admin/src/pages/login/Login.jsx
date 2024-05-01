@@ -1,5 +1,5 @@
 import {useContext, useState} from "react"
-import {AuthContext} from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext"
 import "./login.scss"
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,7 @@ const Login = ()=> {
         password: undefined,
     });
     const { loading,error,dispatch } = useContext(AuthContext);
-
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCredentials((prev) => ({...prev, [e.target.id]: e.target.value}));
@@ -24,16 +22,15 @@ const Login = ()=> {
             const res = await axios.post("/auth/login", credentials);
             if(res.data.isAdmin){
               dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details});
-              navigate("/")
+              navigate("/home")
             }else{
               dispatch({type: "LOGIN_FAILURE", 
-              payload:{message: "Bạn không được phép vào trang này!!!"}});
-            }
-            
-        } catch (err) {
-            dispatch({type: "LOGIN_FAILURE", payload:err.response.data})
-            
+              payload:{message: "Bạn không được phép vào trang này!!!"},
+            });
         }
+    } catch (err) {
+        dispatch({type: "LOGIN_FAILURE", payload:err.response.data})
+    }
     }
 
     return (
@@ -58,7 +55,6 @@ const Login = ()=> {
                 />
                 
                 <button disabled={loading} onClick={handleClick} className="lButton">Đăng nhập</button>
-                <p className="link-register">Chưa có tài khoản?<a href="/register"> Đăng ký ngay.</a></p>
                 {error && <span>{error.message}</span>}
             </div>
         </div>

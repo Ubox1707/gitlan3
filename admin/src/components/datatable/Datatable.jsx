@@ -17,11 +17,11 @@ const Datatable = ({columns}) => {
   }, [data]);
   
   const handleDelete = async (id) => {
+    console.log(id)
     try{
       await axios.delete(`/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
     }catch(err){}
-    
   };
 
   const actionColumn = [
@@ -33,13 +33,13 @@ const Datatable = ({columns}) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">Xem</div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
             >
-              Delete
+              Xóa
             </div>
           </div>
         );
@@ -49,8 +49,8 @@ const Datatable = ({columns}) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
+      {path}
+        <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
       </div>

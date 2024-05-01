@@ -9,35 +9,35 @@ const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
 
-  const handleChange = e => {
-    setInfo((prev) => ({...prev, [e.target.id]: e.target.value }));
-  }
+  const handleChange = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
-  const handleClick = async (e)=>{
+  const handleClick = async (e) => {
     e.preventDefault();
-
     const data = new FormData();
-    data.append("file",file);
-    data.append("upload_preset","upload");
-    try{
-      const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dehf2hp4a/image/upload",
-       data);
-       console.log(uploadRes.data);
-       const { url } = uploadRes.data;
-       console.log(data);
+    data.append("file", file);
+    data.append("upload_preset", "upload");
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dehf2hp4a/image/upload",
+        data
+      );
 
-       const newUser = {
+      const { url } = uploadRes.data;
+      console.log({info})
+      const newUser = {
         ...info,
         img: url,
-       };
-       await axios.post("/auth/register", newUser);
+      };
 
-    }catch(err){
+      await axios.post("/users", newUser);
+    } catch (err) {
       console.log(err);
     }
   };
-  console.log(info);
 
+  
   return (
     <div className="new">
       <Sidebar />
@@ -74,15 +74,15 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input 
-                  onChange={handleChange} 
-                  type={input.type} 
-                  placeholder={input.placeholder} 
-                  id={input.id}
+                  <input
+                    onChange={handleChange}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    id={input.id}
                   />
                 </div>
               ))}
-              <button onClick={handleClick}>Gửi</button>
+              <button onClick={handleClick}>Send</button>
             </form>
           </div>
         </div>

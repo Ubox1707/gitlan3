@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleClick = async (event) => {
     try {
@@ -18,6 +18,9 @@ const Navbar = () => {
       } else if (event.target.classList.contains("btnRegister")) {
         // Điều hướng đến trang đăng ký
         navigate("/register");
+      } else if (event.target.classList.contains("btnLogOut")){
+        dispatch({ type: "LOGOUT" });
+        navigate("/");
       }
     } catch (err) {}
   };
@@ -31,7 +34,7 @@ const Navbar = () => {
         {user ? (
         <div className="navItems">
           <div className="username">Xin chào, {user.username}</div>
-          <button className="btnLogOut">Đăng xuất</button>
+          <button className="btnLogOut" onClick={handleClick}>Đăng xuất</button>
         </div>
         )  : (
         <div className="navItems">

@@ -91,7 +91,7 @@ const Header = ({ type }) => {
             <p className="headerDesc">
               Khách sạn giá rẻ - giành cho các bạn trẻ!!!
             </p>
-            {!user && <button className="headerBtn">Đăng nhập / Đăng xuất</button>}
+            
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
