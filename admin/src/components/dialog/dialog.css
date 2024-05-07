@@ -1,0 +1,29 @@
+.dialog{
+    
+    width: 400px;
+    height: 110px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    color: #000;
+    border: 1px solid #000;
+    position: absolute;
+    margin: -200px 100px 0px 400px;
+    
+}
+.alert{
+    background-color: #C3FF93;
+    border-radius: 8px 8px 0px 0px;
+    
+}
+.content{
+    font-size: 20px;
+}
+.btn-ok{
+    margin-right: 10px;
+    line-height: 26px;
+    width: 70px;
+    background-color: #FFAF61;
+    color: #FFF;
+    border-radius: 4px;
+    margin: 16px 0px 2px 160px;
+}

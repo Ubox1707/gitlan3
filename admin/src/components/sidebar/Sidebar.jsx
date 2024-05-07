@@ -14,29 +14,44 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext  } from "../../context/AuthContext";
+
+
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  
+  //const { dispatch } = useContext(DarkModeContext);
+  const { dispatch: authDispatch } = useContext(AuthContext);
+  const { dispatch: darkModeDispatch } = useContext(DarkModeContext);
+ 
+  const navigate = useNavigate();
+  const handleClick = async (event) => {
+    try {
+      // Kiểm tra class name của nút được nhấn
+     if (event.target.classList.contains("btnLogOut")){
+        authDispatch({ type: "LOGOUT" });
+        
+        navigate("/")
+      }
+    } catch (err) {}
+  };
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/home" style={{ textDecoration: "none" }}>
           <span className="logo">BookingHotelAdmin</span>
         </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Khách hàng</span>
             </li>
           </Link>
           <Link to="/hotels" style={{ textDecoration: "none" }}>
@@ -52,7 +67,7 @@ const Sidebar = () => {
           </li>
           </Link>
           
-          <li>
+          {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
           </li>
@@ -77,26 +92,26 @@ const Sidebar = () => {
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
-          </li>
+          </li> */}
           <p className="title">USER</p>
-          <li>
+          {/* <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
+          </li> */}
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span onClick={handleClick} className="btnLogOut">Thoáttttt</span>
           </li>
         </ul>
       </div>
       <div className="bottom">
         <div
           className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
+          onClick={() => darkModeDispatch({ type: "LIGHT" })}
         ></div>
         <div
           className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
+          onClick={() => darkModeDispatch({ type: "DARK" })}
         ></div>
       </div>
     </div>

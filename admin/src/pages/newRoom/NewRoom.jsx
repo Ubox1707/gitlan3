@@ -2,27 +2,39 @@ import "./newRoom.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { roomInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import Dialog from "../../components/dialog/Dialog";
 
 const NewRoom = () => {
   const [info, setInfo] = useState({});
   const [hotelId, setHotelId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
+  const [showDialog, setShowDialog] = useState(false);
 
   const { data, loading, error } = useFetch("/hotels");
 
+  useEffect(() => {
+    setHotelId(data[0]?._id)
+  }, [loading, data])
+ 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const handleClose = () => {
+    setShowDialog(false);
+    window.location.reload();
+  };
+  
   const handleClick = async (e) => {
     e.preventDefault();
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
       await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      setShowDialog(true);
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +69,7 @@ const NewRoom = () => {
 
                <div className="formInput">
                   <label>Chọn Khách sạn</label>
-                  <select id="hotelId" onChange={(e) => setHotelId(e.target.value)}>
+                  <select id="hotelId" name="hotel" value={hotelId} onChange={(e) => setHotelId(e.target.value)}>
                   {loading
                     ? "loading"
                     : data &&
@@ -70,6 +82,7 @@ const NewRoom = () => {
             </form>
           </div>
         </div>
+        {showDialog && <Dialog handleClose={handleClose} isSuccess={true} />}
       </div>
     </div>
   );

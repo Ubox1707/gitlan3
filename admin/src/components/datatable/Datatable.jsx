@@ -11,18 +11,33 @@ const Datatable = ({columns}) => {
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
   const {data, loading, error} = useFetch(`/${path}`);
+  
 
   useEffect(()=>{
     setList(data);
   }, [data]);
   
   const handleDelete = async (id) => {
-    console.log(id)
+    
     try{
       await axios.delete(`/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
+     
     }catch(err){}
   };
+  // const handleDelete = async (id, path) => {
+  //   console.log(id);
+  //   try {
+  //     if (path === "rooms") {
+  //       const hotelId = ""; // Thay thế bằng mã lấy hotelId tương ứng
+  //       await axios.delete(`/${path}/${id}/${hotelId}`);
+  //     } else {
+  //       await axios.delete(`/${path}/${id}`);
+  //     }
+  //     setList(list.filter((item) => item._id !== id));
+  //   } catch (err) {}
+  // };
+  
 
   const actionColumn = [
     {
@@ -51,7 +66,7 @@ const Datatable = ({columns}) => {
       <div className="datatableTitle">
       {path}
         <Link to={`/${path}/new`} className="link">
-          Add New
+          Thêm mới
         </Link>
       </div>
       <DataGrid
